@@ -1,13 +1,15 @@
 # Importar librerias
 import os
+import sys
 import time
 import sqlite3
 from datetime import date
 import hashlib
+from pyfiglet import Figlet
 
 # Declaramos varialbes
 
-usuarios = []
+
 password = []
 
 
@@ -25,15 +27,15 @@ con = sqlite3.connect("DataBase.db3")
 cur = con.cursor()
 #cur.execute(" CREATE TABLE banco ( user	TEXT NOT NULL UNIQUE, password	TEXT NOT NULL, ahorro	REAL, corriente	REAL, interes	INTEGER NOT NULL, cuenta TEXT NOT NULL, documento REAL NOT NULL, PRIMARY KEY(user))")
 
-# Recupera los usuarios de la base de datos
-cur.execute("SELECT user FROM banco")
-usuarios = cur.fetchall()
 
 # Primer Menu
 
-print(" Elija una opcion")
-print("1) inicio de sesion")
-print("2) creacion de cuenta")
+LP()
+print(Figlet(font='5lineoblique').renderText("Banco EAN"))
+
+print((" Elija una opcion ").center (45, '-'))
+print("[1] inicio de sesion")
+print("[2] creacion de cuenta")
 
 
 a = int(input())
@@ -59,6 +61,8 @@ if a == 2:
       
       
       # Validacion de la ausencia de otros usuarios
+    cur.execute("SELECT user FROM banco")
+    usuarios = cur.fetchall()
     for usuario in usuarios:
         usuariont = usuario[0]
         while usuarion ==  usuariont:
@@ -140,12 +144,12 @@ if a == 2:
 #    print(basein)
     cur.executemany("INSERT INTO banco VALUES (?,?,null,null,?,?,?)", basein)
     con.commit()  
-    cur.execute("SELECT user FROM banco")
-    usuarios = cur.fetchall()
-
+#Agregar menu 
 
 # Opcion inicio de secion 
 if a == 1:
+  cur.execute("SELECT user FROM banco")
+  usuarios = cur.fetchall()
   usuariol = input("ingresa tu usuario: ")
   for usuario in usuarios:
       usuariont = usuario[0]
@@ -161,10 +165,10 @@ if a == 1:
       print("Puedes volver a intentar ")
       passw = input("ingresa contraseña: ")
     if passw == "1":
+      LP()
       print("para recuperar su contraseña dirijase a uno de nuestros puntos de atencion para validacion humana, gracias por su colaboracion")
       print("gracias por confiar en nostros")
       print()
       print("Banco")
       exit()
-  elif passwr[0][0] == passw:
-    print("Acceso")
+#  elif passwr[0][0] == passw:
