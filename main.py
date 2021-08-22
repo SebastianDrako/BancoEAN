@@ -12,6 +12,10 @@ from pyfiglet import Figlet
 
 password = []
 
+#importar funciones
+sys.path.append("./src/funciones")
+from menues import *
+
 
 # Declara la funcion LP para limpiar la termianl
 
@@ -29,18 +33,17 @@ cur = con.cursor()
 
 
 # Primer Menu
+inicio()
 
-LP()
-print(Figlet(font='5lineoblique').renderText("Banco EAN"))
-
-print((" Elija una opcion ").center (45, '-'))
-print("[1] inicio de sesion")
-print("[2] creacion de cuenta")
-
-
-a = int(input())
-
+while(True):
 # Validacion del primer menu
+  try:
+    a = int(input())
+    break
+  except:
+    print("Parametro incorrecto vuelve a intentar")
+
+
 while (not ((a == 1) or (a == 2))):
   print("Parametro incorrecto vuelve a intentar")
   a = int(input())
