@@ -136,9 +136,9 @@ if a == 2:
 
 
     
-    basein = [(usuarion , contn , 0 , 0 , 0.0 ,  cuid , int(idn) )]
+    basein = [(usuarion , contn , 0.0 ,  cuid , int(idn) )]
 #    print(basein)
-    cur.executemany("INSERT INTO banco VALUES (?,?,?,?,?,?,?)", basein)
+    cur.executemany("INSERT INTO banco VALUES (?,?,null,null,?,?,?)", basein)
     con.commit()  
     cur.execute("SELECT user FROM banco")
     usuarios = cur.fetchall()
@@ -154,5 +154,17 @@ if a == 1:
         passwr = cur.fetchall()
 
   passw = input("ingresa contraseña: ")
-  if passwr[0][0] == passw :
-    print("aceptad")
+  if not passwr[0][0] == passw :
+    while( (not passwr[0][0] == passw and not passw == str("1")) or (not (not passwr[0][0] == passw and passw == str("1")))):
+      LP()
+      print("Si olvidaste tu contraseña dijita 1")
+      print("Puedes volver a intentar ")
+      passw = input("ingresa contraseña: ")
+    if passw == "1":
+      print("para recuperar su contraseña dirijase a uno de nuestros puntos de atencion para validacion humana, gracias por su colaboracion")
+      print("gracias por confiar en nostros")
+      print()
+      print("Banco")
+      exit()
+  elif passwr[0][0] == passw:
+    print("Acceso")
