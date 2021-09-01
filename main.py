@@ -17,6 +17,7 @@ sys.path.append("./src/funciones")
 from menues import *
 
 
+
 # Declara la funcion LP para limpiar la termianl
 
 def LP():
@@ -33,34 +34,32 @@ cur = con.cursor()
 
 
 # Primer Menu
-inicio()
+menu("Elije una opcion")
+opciones2("Inicio de sesion","Creacion de cuenta")
 
 while(True):
 # Validacion del primer menu
-  try:
-    a = int(input())
-    break
-  except:
-    print("Parametro incorrecto vuelve a intentar")
+    try:
+     a = int(input())
+     break
+    except:
+     menu2("Elije una opcion","Parametro incorrecto vuelve a intentar")
 
 
-while (not ((a == 1) or (a == 2))):
-  print("Parametro incorrecto vuelve a intentar")
-  a = int(input())
+
+     while (not ((a == 1) or (a == 2))):
+      menu2("Elije una opcion","Parametro incorrecto vuelve a intentar")
+      a = int(input())
+
 
   # Opcion creacion de una cuenta bancaria  
 if a == 2:
-    LP()
-    usuarion = str(input("Ingrese Usuario nuevo: "))
-     
-    
-     
+    menu("Ingresa tu nuevo usuario")
+    usuarion = str(input())
      # Validacion del la longitud del uaurio
     while (len(usuarion)) <= 3:
-         print("Usuario demaciado corto , intente nuevamente")
-         time.sleep(2)
-         LP()
-         usuarion = str(input("Ingrese Usuario nuevo: "))
+         menu("Usuario demaciado corto , intente nuevamente")
+         usuarion = str(input())
       
       
       # Validacion de la ausencia de otros usuarios
@@ -69,76 +68,105 @@ if a == 2:
     for usuario in usuarios:
         usuariont = usuario[0]
         while usuarion ==  usuariont:
-          LP()
-          print("El nombre de usuario ya esta registrado")
-          print("pruebe con un usuario diferente ")
-          usuarion = str(input("Ingrese Usuario nuevo: "))
+          menu2("Ese nombre de usuario ya esta registrado","pruebe con un usuario diferente" )
+          usuarion = str(input())
                 
 
 
 
 
 # Ingreso de contraseña
-    LP()
-    contn = input("Ingrese contraseña: ")
+    menu("Ingresa tu nueva contraseña")
+    contn = input()
              
                   
              # Validacion del la longitud del uaurio
     while (len(contn) < 7):
-        print("La contraseña debe contener minimo 8 caracteres")
-        time.sleep(2)
-        LP()
-        
-        contn = input("Ingrese contraseña: ")
+        menu2("Ingresa tu nueva contraseña" , "La contraseña debe contener minimo 8 caracteres")
+        contn = input("")
           
           
           # Validacion de la contraseña
-    contn0 = input("Confierme su contraseña: ")
+    menu("Confirma tu contraseña")
+    contn0 = input("")
     while contn != contn0:
-        print("Las contraseñas no coinciden , intente nuevamente")
-        time.sleep(2)
-        LP()
-        contn0 = input("Confierme su contraseña: ")
+        menu2("Confirma tu contraseña","Las contraseñas no coinciden - intenta nuevamente")
+        contn0 = input("")
         
         
-          #Validacion de edad minima permitida por la ley
-    dian = input("dia de nacimiento: ")
-    mesn = input("mes de nacimiento: ")
-    yearn = input("año de nacimiento: ")
+#Validacion de edad minima permitida por la ley
+    a = 2
+    while a == 2:
+      while(True):
+        try:
+          menu("Dijita tu dia de nacimiento")
+          dian = int(input())
+          while ((dian > 31) or dian < 0):
+            menu2("Dijita tu dia de nacimiento","Verifica que el dato introducido sea un dia del calendario")
+            dian = int(input())
+          break
+        except:
+          pass
+
+      
+
+      while(True):
+        try:
+          menu("Dijita tu mes de nacimiento")
+          opcionesfech()
+          mesn = int(input())
+          while ((mesn > 12) or mesn < 0):
+            menu2("Dijita tu mes de nacimiento","Verifica que el dato introducido sea un mes del calendario")
+            opcionesfech()
+            mesn = int(input())
+          break
+        except:
+          pass
+
+      while(True):
+        try:
+          menu("Dijita tu año de nacimiento")
+          yearn = int(input())
+          while (yearn < 1903):
+            menu2("Dijita tu año de nacimiento","Verifica que el dato introducido sea un año del calendario")
+            yearn = int(input())
+          break
+        except:
+          pass
+
+      menu2("Verifica que tu fecha de nacimiento sea la correcta",str( str(dian) + "/" + str(mesn) + "/" + str(yearn)) )
+      opciones2("Los datos son correctos","Los datos no son correctos") 
+      a = int(input())
     
-    print("su fecha de nacimiento es :", dian, "/", mesn, "/", yearn)
-    
-    print("1) Confirmar")
-    print("2) Cancelar")
-    
-    a = int(input())
-    
-    if a == 2:
-      con.close()
-      exit()
-    elif a == 1:
+    if a == 1:
         daten = date(int(yearn), int(mesn), int(dian))
         hoy = date.today()
         datenv = (hoy - daten).days
         if (datenv/365) > 13:
-          LP()
 # ingreso de documento de identidad
-          idn = input("Ingrese su documento de identidad: ")
-          while (len(idn) < 7) or (len(contn) > 10):
-             if (len(idn) < 7):
-              print("El documento debe tener al menos 8 numeros")
-             elif (len(idn) > 10):
-                print("El documento debe tener maximo 10 numeros")
-             time.sleep(2)
-             LP()
-             idn = input("Ingrese su documento de identidad: ")
+          menu("Ingresa tu numero de documento de identidad")
+          while(True):
+            try:
+              idn = int(input())
+              while (len(str(idn)) < 7) or (len(str(idn)) > 10):
+                if (len(str(idn)) < 7):
+                  menu2("Ingresa tu numero de documento de identidad nuevamente","El documento debe tener al menos 8 numeros" )
+                  idn = int(input())
+                elif (len(str(idn)) > 10):
+                    menu2("Ingresa tu numero de documento de identidad nuevamente ""El documento debe tener maximo 10 numeros")
+                    idn = int(input())
+              break
+            except:
+              menu2("Ingresa tu numero de documento de identidad nuevamente ","El documento debe ser un numero")
         else:
-          con.close()
+          menu()
+          print("Gracias por tu interes en nuestros servicos pero necesitas tener mas de 13 años para poder tener acceaso a este servicio")
+          print()
           exit()
 
         
     # Crear numer de cuenta
-    cuidgen = str(usuarion + idn)
+    cuidgen = str(usuarion + str(idn))
     cuid = "bancoean:" + (hashlib.sha256(cuidgen.encode())).hexdigest()
 
 
@@ -147,14 +175,43 @@ if a == 2:
 #    print(basein)
     cur.executemany("INSERT INTO banco VALUES (?,?,null,null,?,?,?)", basein)
     con.commit()  
-#Agregar menu 
+
+
+# Le preguntamos al usuario si quiere terminar el programa o iniciar seccion
+    menu("Usuario Registrado Exitosamente")
+    while(True):
+      try:
+        opciones2("Iniciar secion","Cerrar Programa")
+        a = int(input())
+        while not (a==1 or a==2):
+          menu2("Usuario Registrado Exitosamente", "Paramtro invalida, intenta otravez")
+          opciones2("Iniciar Seccion","Cerrar Programa")
+          a = int(input())
+        break
+      except:
+        menu2("Usuario Registrado Exitosamente", "Paramtro invalida, intenta otravez")
+
+    if a == 2:
+      menu("Gracias por usar nuestros servicios")
+      exit()
 
 # Opcion inicio de secion 
 if a == 1:
   cur.execute("SELECT user FROM banco")
   usuarios = cur.fetchall()
-  usuariol = input("ingresa tu usuario: ")
+
+  menu2("Bienvenido","Por favor ingresa tu usuario")
+  usuariol = input()
   for usuario in usuarios:
+      usuariont = usuario[0]
+      if usuariol ==  usuariont:
+        cur.execute("SELECT password FROM banco WHERE user = ?", [usuario[0]])
+        passwr = cur.fetchall()
+
+  while len(passwr) == 0:
+    menu2("Bienvenido - ingresa tu usuario","parece que ese usuario no exite - intenta otra vez")
+    usuariol = input()
+    for usuario in usuarios:
       usuariont = usuario[0]
       if usuariol ==  usuariont:
         cur.execute("SELECT password FROM banco WHERE user = ?", [usuario[0]])
@@ -174,4 +231,7 @@ if a == 1:
       print()
       print("Banco")
       exit()
-#  elif passwr[0][0] == passw:
+  elif passwr[0][0] == passw:
+    LP()
+    print("Aceso exitoso")
+    exit()
