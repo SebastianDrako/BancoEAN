@@ -30,7 +30,7 @@ def LP():
 con = sqlite3.connect("DataBase.db3")
 
 cur = con.cursor()
-#cur.execute(" CREATE TABLE banco ( user	TEXT NOT NULL UNIQUE, password	TEXT NOT NULL, ahorro	REAL, corriente	REAL, interes	INTEGER NOT NULL, cuenta TEXT NOT NULL, documento REAL NOT NULL, PRIMARY KEY(user))")
+#cur.execute(" CREATE TABLE banco ( user	TEXT NOT NULL UNIQUE, password	TEXT NOT NULL, tipo	TEXT NOT NULL, saldo REAL NOT NULL, interes	INTEGER NOT NULL, cuenta TEXT NOT NULL, documento REAL NOT NULL, PRIMARY KEY(user))")
 
 
 # Primer Menu
@@ -143,6 +143,7 @@ if a == 2:
         hoy = date.today()
         datenv = (hoy - daten).days
         if (datenv/365) > 13:
+            
 # ingreso de documento de identidad
           menu("Ingresa tu numero de documento de identidad")
           while(True):
@@ -163,6 +164,31 @@ if a == 2:
           print("Gracias por tu interes en nuestros servicos pero necesitas tener mas de 13 años para poder tener acceaso a este servicio")
           print()
           exit()
+          
+          
+# TIpo de cuenta para el usuario nuevo
+          
+    while(True):
+       try:
+         menu("Elige tu tipo de cuenta")
+         opciones2("Ahorros", "Corriente")
+         tipob = int(input())
+         
+         while not ((tipob == 1) or (tipob == 2)):
+          menu2("Elige tu tipo de cuenta","Verifica que el dato introducido sea una opcion valida")
+          opciones2("Ahorros", "Corriente")
+          tipob = int(input())
+          
+          
+         if tipob == 1:
+             tipo = "AHORROS"
+         elif tipob == 2:
+            tipo = "CORRIENTE"
+            
+         break
+       except:
+         pass
+   
 
         
     # Crear numer de cuenta
@@ -171,9 +197,9 @@ if a == 2:
 
 
     
-    basein = [(usuarion , contn , 0.0 ,  cuid , int(idn) )]
+    basein = [(usuarion , contn , tipo , 0 , 0.0 ,  cuid , int(idn) )]
 #    print(basein)
-    cur.executemany("INSERT INTO banco VALUES (?,?,null,null,?,?,?)", basein)
+    cur.executemany("INSERT INTO banco VALUES (?,?,?,?,?,?,?)", basein)
     con.commit()  
 
 
