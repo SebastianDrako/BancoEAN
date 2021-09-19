@@ -301,7 +301,7 @@ if a == 1:
             cur.executemany("UPDATE banco SET ufech = ? WHERE user = ?", [ (date.today() ,usuario[0]) ])
             con.commit()
         
-        #Codigo que calcula el interes
+        #Calculo del interes
         
         datei = date(int(ufech.split("-")[0]), int(ufech.split("-")[1]), int(ufech.split("-")[2]))
         hoy = date.today()
@@ -316,5 +316,12 @@ if a == 1:
             con.commit()
             cur.execute("UPDATE banco SET promm = 0 WHERE user = ?", [usuario[0]])
             con.commit()
+
+        #Interfaz del suario
+
+
+
+
+
       break
 
