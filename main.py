@@ -319,6 +319,9 @@ if a == 1:
 
         #Interfaz del suario
 
+    menu2("Bienvenido " + usuariol ,"Selecciona una opcion")
+    opciones2("Gestion de fondos", "configuracion")
+    
 
 
 
