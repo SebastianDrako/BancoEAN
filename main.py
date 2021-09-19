@@ -30,8 +30,12 @@ def LP():
 con = sqlite3.connect("DataBase.db3")
 
 cur = con.cursor()
-#cur.execute(" CREATE TABLE banco ( user	TEXT NOT NULL UNIQUE, password	TEXT NOT NULL, tipo	TEXT NOT NULL, saldo REAL NOT NULL, interes	INTEGER NOT NULL, cuenta TEXT NOT NULL, documento REAL NOT NULL, PRIMARY KEY(user))")
 
+
+try:
+    cur.execute(" CREATE TABLE banco ( user	TEXT NOT NULL UNIQUE, password	TEXT NOT NULL, tipo	TEXT NOT NULL, saldo REAL NOT NULL, interes	INTEGER NOT NULL, cuenta TEXT NOT NULL, documento REAL NOT NULL, ufech TEXT NOT NULL , promm INTEGER NOT NULL , PRIMARY KEY(user))")
+except:
+    pass
 
 # Primer Menu
 menu("Elije una opcion")
@@ -197,10 +201,16 @@ if a == 2:
 
 
     
-    basein = [(usuarion , contn , tipo , 0 , 0.0 ,  cuid , int(idn) )]
+    basein = [(usuarion , contn , tipo , 0 , 0.0 ,  cuid , int(idn) , date.today() , 0.0)]
 #    print(basein)
-    cur.executemany("INSERT INTO banco VALUES (?,?,?,?,?,?,?)", basein)
+    cur.executemany("INSERT INTO banco VALUES (?,?,?,?,?,?,?,?,?)", basein)
     con.commit()  
+    
+    del usuarion
+    del contn
+    del tipo
+    del cuid
+    del idn
 
 
 # Le preguntamos al usuario si quiere terminar el programa o iniciar seccion
@@ -258,6 +268,28 @@ if a == 1:
       print("Banco")
       exit()
   elif passwr[0][0] == passw:
-    LP()
-    print("Aceso exitoso")
-    exit()
+    menu("Acceso correcto para " + usuariol)
+    time.sleep(2)
+    while (True):
+      cur.execute("SELECT saldo FROM banco WHERE user = ?", [usuario[0]])
+      saldo = cur.fetchall()[0][0]
+      cur.execute("SELECT tipo FROM banco WHERE user = ?", [usuario[0]])
+      tipo = cur.fetchall()[0][0]
+      cur.execute("SELECT interes FROM banco WHERE user = ?", [usuario[0]])
+      interes = cur.fetchall()[0][0]
+      cur.execute("SELECT cuenta FROM banco WHERE user = ?", [usuario[0]])
+      cuenta = cur.fetchall()[0][0]
+      cur.execute("SELECT ufech FROM banco WHERE user = ?", [usuario[0]])
+      ufech = cur.fetchall()[0][0]
+      cur.execute("SELECT promm FROM banco WHERE user = ?", [usuario[0]])
+      promm = cur.fetchall()[0][0]
+
+
+
+
+      #Calculo de interes
+      
+
+
+
+      break
