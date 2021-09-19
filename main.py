@@ -33,7 +33,7 @@ cur = con.cursor()
 
 
 try:
-    cur.execute(" CREATE TABLE banco ( user	TEXT NOT NULL UNIQUE, password	TEXT NOT NULL, tipo	TEXT NOT NULL, saldo REAL NOT NULL, interes	INTEGER NOT NULL, cuenta TEXT NOT NULL, documento REAL NOT NULL, ufech TEXT NOT NULL , promm INTEGER NOT NULL , PRIMARY KEY(user))")
+    cur.execute(" CREATE TABLE banco ( user	TEXT NOT NULL UNIQUE, password	TEXT NOT NULL, tipo	TEXT NOT NULL, saldo FLOAT NOT NULL, interes FLOAT NOT NULL, cuenta TEXT NOT NULL, documento INT NOT NULL, ufech TEXT NOT NULL , promm FLOAT NOT NULL , PRIMARY KEY(user))")
 except:
     pass
 
@@ -285,11 +285,36 @@ if a == 1:
       promm = cur.fetchall()[0][0]
 
 
-
-
       #Calculo de interes
       
-
-
-
+      if tipo == "AHORROS":
+          
+        if promm == 0:
+            cur.executemany("UPDATE banco SET promm = ? WHERE user = ?", [ ( saldo ,usuario[0]) ])
+            con.commit()
+            cur.executemany("UPDATE banco SET ufech = ? WHERE user = ?", [ (date.today() ,usuario[0]) ])
+            con.commit()
+        else:
+            promm = (promm + saldo) / 2
+            cur.executemany("UPDATE banco SET promm = ? WHERE user = ?", [(promm, usuario[0]) ])
+            con.commit()
+            cur.executemany("UPDATE banco SET ufech = ? WHERE user = ?", [ (date.today() ,usuario[0]) ])
+            con.commit()
+        
+        #Codigo que calcula el interes
+        
+        datei = date(int(ufech.split("-")[0]), int(ufech.split("-")[1]), int(ufech.split("-")[2]))
+        hoy = date.today()
+        dias = (hoy - datei).days
+        if dias < 30:
+            data = (interes/100/30 * dias * promm) + saldo
+            cur.executemany("UPDATE banco SET saldo = ? WHERE user = ?", [ ( data ,usuario[0]) ])
+            con.commit()
+        else:
+            data = (interes/100/30 * dias * saldo) + saldo
+            cur.executemany("UPDATE banco SET saldo = ? WHERE user = ?", [ (data ,usuario[0]) ])
+            con.commit()
+            cur.execute("UPDATE banco SET promm = 0 WHERE user = ?", [usuario[0]])
+            con.commit()
       break
+
