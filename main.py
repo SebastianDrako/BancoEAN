@@ -491,8 +491,19 @@ if a == 1:
                 menu("Cuanto dinero desea retirar:")
                 opciones=[20, 40, 60, 80]
                 multiples_opciones(opciones)
+                a = int(input())
+                if a == 1:
+                    retirar = 20
+                if a == 2:
+                    retirar = 40
+                if a == 3:
+                    retirar = 60
+                if a == 4:
+                    retirar = 80
+                
                 if retirar>saldo:
-                  print("No tiene esa cantidad de dinero:(")
+                  print("No tiene esa cantidad de dinero")
+                  time.sleep(2)
                 else:
                   data = saldo - retirar
                   cur.executemany(
@@ -501,10 +512,12 @@ if a == 1:
                     )
                   con.commit()
                   print("Dinero en la cuenta:"+str(saldo))
+                  time.sleep(5)
                       
 
             elif opcion == 3 :
                  print("Dinero en la cuenta:"+str(saldo))
+                 time.sleep(5)
 		
 
            ##Recargar la cuenta
