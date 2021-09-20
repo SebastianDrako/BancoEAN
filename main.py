@@ -378,7 +378,7 @@ if a == 1:
 
         while True:
             menu("Elije una opción")
-            opciones = ["Realizar una transferencia", "Eliminar cuenta", "Salir"]
+            opciones = ["Realizar una transferencia" , "Retirar dinero" , "Eliminar cuenta", "Salir"]
             multiples_opciones(opciones)
 
             try:
@@ -434,10 +434,7 @@ if a == 1:
                         menu("Ingresa el numero de cuenta del receptor")
                         while True:
                             cuenta_destino = input()
-                            cuid_input = (
-                                "bancoean:"
-                                + (hashlib.sha256(cuenta_destino.encode())).hexdigest()
-                            )
+                            cuid_input = cuenta_destino
                             cur.execute(
                                 "SELECT tipo, saldo FROM banco WHERE cuenta = ?",
                                 [cuid_input],
@@ -494,8 +491,32 @@ if a == 1:
                             break
                         break
                     break
-
             elif opcion == 2:
+               try:
+                 menu("Elige una opcion")
+                 opciones2("retirar dinero", "Consultar saldo")
+                 b=int(input())
+                 while not((b==1) or (b==2)):
+                   nemu2("Elige una opcion","Verifica que el dato introducido sea una opcion valida")
+                   opciones2("retirar dinero", "consultar saldo")
+                   b=int(input())
+                   
+                   if opcioni==1:
+                    menu("Cuanto dinero desea retirar:")
+                    opciones(20, 40, 60, 80, 100)
+                    if retirar>saldo:
+                      print("No tiene esa cantidad de dinero:(")
+                    else:
+                        saldo -= retirar
+                        print("Dinero en la cuenta:"+str(saldo))
+                   elif opcioni==2:
+                        print("Dinero en la cuenta:"+str(saldo))
+                   else:
+                     print("Se equivoco de opcion,vuelve a intentarlo")
+               except:
+                    pass
+                     
+            elif opcion == 3 :
                 # Confirmación de remover cuenta
                 menu(
                     "Estas seguro de que deseas eliminar tu cuenta? Escribe `si` para confirmar"
@@ -527,7 +548,8 @@ if a == 1:
                             )
                             exit()
 
-            elif opcion == 3:
+            elif opcion == 4:
+                LP()
                 print("Saliendo del sistema...")
                 exit()
 
