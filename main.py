@@ -319,30 +319,30 @@ if a == 1:
             if tipo == "AHORROS":
 
                 if promm == 0:
-                    cur.executemany(
+                    cur.execute(
                         "UPDATE banco SET promm = ? WHERE user = ?",
-                        [(saldo, usuario[0])],
+                        [saldo, usuariol],
                     )
                     con.commit()
-                    cur.executemany(
+                    cur.execute(
                         "UPDATE banco SET ufech = ? WHERE user = ?",
-                        [(date.today(), usuario[0])],
+                        [date.today(), usuariol],
                     )
                     con.commit()
                 else:
                     promm = (promm + saldo) / 2
-                    cur.executemany(
+                    cur.execute(
                         "UPDATE banco SET promm = ? WHERE user = ?",
-                        [(promm, usuario[0])],
+                        [promm, usuariol],
                     )
                     con.commit()
-                    cur.executemany(
+                    cur.execute(
                         "UPDATE banco SET ufech = ? WHERE user = ?",
-                        [(date.today(), usuario[0])],
+                        [date.today(), usuariol],
                     )
                     con.commit()
 
-                # Calculo del interes
+                # Calculo del interes - ERROR PRESENTE CORREGIR
 
                 datei = date(
                     int(ufech.split("-")[0]),
@@ -353,16 +353,16 @@ if a == 1:
                 dias = (hoy - datei).days
                 if dias < 30:
                     data = (interes / 100 / 30 * dias * promm) + saldo
-                    cur.executemany(
+                    cur.execute(
                         "UPDATE banco SET saldo = ? WHERE user = ?",
-                        [(data, usuario[0])],
+                        [data, usuariol],
                     )
                     con.commit()
                 else:
                     data = (interes / 100 / 30 * dias * saldo) + saldo
-                    cur.executemany(
+                    cur.execute(
                         "UPDATE banco SET saldo = ? WHERE user = ?",
-                        [(data, usuario[0])],
+                        [data, usuariol],
                     )
                     con.commit()
                     cur.execute(
@@ -431,7 +431,7 @@ if a == 1:
                             cuenta_destino = input()
                             cuid_input = cuenta_destino
                             cur.execute(
-                                "SELECT tipo, saldo FROM banco WHERE cuenta = ?",
+                                "SELECT tipo, saldo , cuenta FROM banco WHERE cuenta = ?",
                                 [cuid_input],
                             )
                             cuid_receptor = cur.fetchone()
@@ -473,6 +473,7 @@ if a == 1:
                                         "UPDATE banco SET saldo = ? WHERE cuenta = ?",
                                         [saldo_receptor, cuid_input],
                                     )
+                                    con.commit()
 
                                     saldo -= monto
                                     cur.execute(
