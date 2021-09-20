@@ -372,11 +372,6 @@ if a == 1:
 
                 # Interfaz del suario
 
-            break
-
-        # Opción de eliminar cuenta
-
-        while True:
             menu("Elije una opción")
             opciones = ["Realizar una transferencia", "Retirar dinero", "Revisar saldo" , "Eliminar cuenta", "Salir"]
             multiples_opciones(opciones)
@@ -499,10 +494,10 @@ if a == 1:
                 if retirar>saldo:
                   print("No tiene esa cantidad de dinero:(")
                 else:
-                  saldo -= retirar
+                  data = saldo - retirar
                   cur.executemany(
                         "UPDATE banco SET saldo = ? WHERE user = ?",
-                        [(saldo, usuario[0])],
+                        [(data, usuario[0])],
                     )
                   con.commit()
                   print("Dinero en la cuenta:"+str(saldo))
