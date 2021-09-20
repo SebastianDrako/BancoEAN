@@ -492,31 +492,13 @@ if a == 1:
                         break
                     break
             elif opcion == 2:
-               try:
-                 menu("Elige una opcion")
-                 opciones2("retirar dinero", "Consultar saldo")
-                 b=int(input())
-                 while not((b==1) or (b==2)):
-                   nemu2("Elige una opcion","Verifica que el dato introducido sea una opcion valida")
-                   opciones2("retirar dinero", "consultar saldo")
-                   b=int(input())
-                   
-                   if opcioni==1:
-                    menu("Cuanto dinero desea retirar:")
-                    opciones(20, 40, 60, 80, 100)
-                    if retirar>saldo:
-                      print("No tiene esa cantidad de dinero:(")
-                    else:
-                        saldo -= retirar
-                        print("Dinero en la cuenta:"+str(saldo))
-                   elif opcioni==2:
-                        print("Dinero en la cuenta:"+str(saldo))
-                   else:
-                     print("Se equivoco de opcion,vuelve a intentarlo")
-               except:
-                    pass
+               pass
+           ##Retirar dinero
                      
             elif opcion == 3 :
+               pass
+           ##Recargar la cuenta
+            elif opcion == 4 :
                 # Confirmación de remover cuenta
                 menu(
                     "Estas seguro de que deseas eliminar tu cuenta? Escribe `si` para confirmar"
@@ -548,7 +530,7 @@ if a == 1:
                             )
                             exit()
 
-            elif opcion == 4:
+            elif opcion == 5:
                 LP()
                 print("Saliendo del sistema...")
                 exit()
