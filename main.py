@@ -491,30 +491,30 @@ if a == 1:
                             break
                         break
                     break
-            elif opcion == 2:
+          elif opcion == 2:
            ##Retirar dinero
-          while(True):
-            try:
-              menu("Elige una opcion")
-              opciones2("retirar dinero", "Consultar saldo")
-              b=int(input())
-              while not((b==1) or (b==2)):
-                nemu2("Elige una opcion","Verifica que el dato introducido sea una opcion valida")
-                opciones2("retirar dinero", "consultar saldo")
-                b=int(input())
-                if opcion==1:
-                  menu("Cuanto dinero desea retirar:")
-                  opciones=[20, 40, 60, 80]
-                  multiples_opciones(opciones)
-                  if retirar>saldo:
-                    print("No tiene esa cantidad de dinero:(")
+              while(True):
+                try:
+                  menu("Elige una opcion")
+                  opciones2("retirar dinero", "Consultar saldo")
+                  b=int(input())
+                  while not((b==1) or (b==2)):
+                    nemu2("Elige una opcion","Verifica que el dato introducido sea una opcion valida")
+                    opciones2("retirar dinero", "consultar saldo")
+                    b=int(input())
+                    if opcion==1:
+                      menu("Cuanto dinero desea retirar:")
+                      opciones=[20, 40, 60, 80]
+                      multiples_opciones(opciones)
+                      if retirar>saldo:
+                        print("No tiene esa cantidad de dinero:(")
+                      else:
+                        saldo -= retirar
+                        print("Dinero en la cuenta:"+str(saldo))
+                    elif opcion==2:
+                      print("Dinero en la cuenta:"+str(saldo))
                   else:
-                    saldo -= retirar
-                    print("Dinero en la cuenta:"+str(saldo))
-                elif opcion==2:
-                  print("Dinero en la cuenta:"+str(saldo))
-              else:
-                print("Se equivoco de opcion,vuelve a intentarlo") 
+                    print("Se equivoco de opcion,vuelve a intentarlo") 
            elif opcion == 3 :
 
            ##Recargar la cuenta
