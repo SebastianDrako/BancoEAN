@@ -500,6 +500,11 @@ if a == 1:
                   print("No tiene esa cantidad de dinero:(")
                 else:
                   saldo -= retirar
+                  cur.executemany(
+                        "UPDATE banco SET saldo = ? WHERE user = ?",
+                        [(saldo, usuario[0])],
+                    )
+                  con.commit()
                   print("Dinero en la cuenta:"+str(saldo))
                       
 
