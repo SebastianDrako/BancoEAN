@@ -1,3 +1,0 @@
-BANCOEAN
-proyecto  de algoritmos y programación , el cual  pretende mostrar  un banco  con sus funciones , como el inicio de seción  que viene con el usuario y la contrasea, el número de cuenta, el olvido de contraseña, el tipo de cuenta  si es corriente o de ahorros,  la eliminación de cuenta, retiro de dinero, transferencias, recarga de dinero, intereses por cuenta  de ahorros  y la creación de cuenta .
-se utilizo en este proyecto varias liberias una de ellas es  os  que nos permite realizar operaciones dependiente del Sistema Operativo como crear una carpeta, listar contenidos de una carpeta, conocer acerca de un proceso
