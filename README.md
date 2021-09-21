@@ -1,0 +1,2 @@
+# BancoEAN
+Proyecto final de la clase de algoritmos y programación, el cual pretende mostrar un prototipo de banco con las siguientes funciones, el inicio de sesión que viene enlazado con el usuario y la contraseña, el número de cuenta, olvido de contraseña, el tipo de cuenta si es corriente o de ahorros, la eliminación de cuenta, retiro de dinero, transferencias, recarga de dinero, intereses por cuenta de ahorros y la creación de cuenta.
