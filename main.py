@@ -369,7 +369,7 @@ if a == 1:
                     )
                     con.commit()
                     cur.execute(
-                        "UPDATE banco SET promm = 0 WHERE user = ?", [usuario[0]]
+                        "UPDATE banco SET promm = 0 WHERE user = ?", [usuariol]
                     )
                     con.commit()
 
