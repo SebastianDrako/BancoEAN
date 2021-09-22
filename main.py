@@ -509,7 +509,7 @@ if a == 1:
                   data = saldo - retirar
                   cur.executemany(
                         "UPDATE banco SET saldo = ? WHERE user = ?",
-                        [(data, usuario[0])],
+                        [(data, usuariol)],
                     )
                   con.commit()
                   print("Dinero en la cuenta:"+str(saldo))
