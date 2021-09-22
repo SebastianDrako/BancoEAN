@@ -7,4 +7,8 @@ Para este proyecto se utilizó varias librerías una de ellas es OS que nos perm
 Además, se utilizo la libreria SQLITE3 esta nos ayuda para poder tener una base de datos rápida y segura,asimismo, la libreria DATATIME representa los componentes de una fecha(año,hora, día, minutos,segundos y microsegundos) .  
 
 Cabe destacra que se utilizaron dos funciones, la primera nos ayuda a limpiar la pantalla utilizando las  siglas de cls  y la otra funcion es para tener una mejor organizacion respecto a los menus que se implementan en nuestro proyecto de bancoean, el primer menu  se refiere a las opciones que se manejan con  los numeros 1 y 2, las multíples opciones se refieren  a las opciones que se van a utilizar en la parte de retiro de dinero ya que el usuario debe elegir qué cantidad de dinero quiere retirar y las opcionesfech, estas las utilizamos para referirnos a los meses del año
+
 ![image](https://user-images.githubusercontent.com/87997369/134271836-cae9ecb2-f234-4f7c-bfd1-1b8846658203.png)
+
+![image](https://user-images.githubusercontent.com/87997369/134274273-c52c4ca1-329e-410c-bc43-9abf7342ab30.png)
+
