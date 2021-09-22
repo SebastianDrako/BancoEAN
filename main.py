@@ -189,6 +189,7 @@ if a == 2:
                 "Gracias por tu interes en nuestros servicos pero necesitas tener mas de 13 años para poder tener acceaso a este servicio"
             )
             print()
+            con.close()
             exit()
 
     # TIpo de cuenta para el usuario nuevo
@@ -252,6 +253,7 @@ if a == 2:
 
     if a == 2:
         menu("Gracias por usar nuestros servicios")
+        con.close()
         exit()
 
 # Opcion inicio de secion
@@ -296,6 +298,7 @@ if a == 1:
             print("gracias por confiar en nostros")
             print()
             print("Banco")
+            con.close()
             exit()
     elif passwr[0][0] == passw:
         menu("Acceso correcto para " + usuariol)
@@ -552,11 +555,13 @@ if a == 1:
                             print(
                                 "Cuenta eliminada exitosamente. Saliendo del sistema..."
                             )
+                            con.close()
                             exit()
 
             elif opcion == 5:
                 LP()
                 print("Saliendo del sistema...")
+                con.close()
                 exit()
 
 
